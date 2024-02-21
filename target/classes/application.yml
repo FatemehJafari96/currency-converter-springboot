@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: CHECK24 Converter
+  cache:
+    type: simple
+    cache-names: currencyCache
+
+server:
+  port: 8080
+  servlet:
+    context-path: /check24

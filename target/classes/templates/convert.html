@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Currency Conversion</title>
+    <style>
+        .row {
+            display: flex;
+            flex-direction: row;
+            margin:5px;
+        }
+
+        .row .item {
+            display: flex;
+            flex-flow: column;
+            margin-right: 6px;
+        }
+
+        input[type="text"]{
+            -webkit-appearance: none;
+            appearance: none;
+            background-clip: padding-box;
+            background-color: #fff;
+            border: 2px solid #161616;
+            border-radius: 0.25rem;
+            color: #212529;
+            display: inline-block;
+            font-weight: 400;
+            text-align:center;
+            line-height: 2;
+        }
+
+        select{
+            -webkit-appearance: none;
+            appearance: none;
+            background-clip: padding-box;
+            background-color: #fff;
+            border: 2px solid #161616;
+            border-radius: 0.25rem;
+            color: #212529;
+            display: inline-block;
+            font-weight: 400;
+            line-height: 2;
+            text-align:center;
+            min-width:120px;
+        }
+
+        button {
+            appearance: none;
+            background-color: #307bc5;
+            border: 1px solid rgba(27, 31, 35, 0.15);
+            border-radius: 6px;
+            box-sizing: border-box;
+            color: #e9e9e9;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 20px;
+            padding: 6px 16px;
+            position: relative;
+            transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            vertical-align: middle;
+            white-space: nowrap;
+            word-wrap: break-word;
+        }
+
+        button:hover {
+            background-color: #0c43b0;
+            text-decoration: none;
+            transition-duration: 0.1s;
+        }
+    </style>
+</head>
+<body>
+<h1>Currency Conversion</h1>
+
+<form action="#" th:action="@{/convert}" method="post">
+    <div class="row">
+        <div class="item">
+            <label for="amount">Amount:</label>
+            <input type="text" id="amount" name="amount" th:value="${amount}" required />
+        </div>
+        <div class="item">
+            <label for="from">From Currency:</label>
+            <select id="from" name="from" th:value="${selected}" required>
+                <option th:each="item : ${rates}" th:value="${item.key}" th:text="${item.key}" th:selected="${item.key == selected}"></option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <button type="submit">Convert</button>
+    </div>
+    <div class="row">
+        <div class="item">
+            <label for="result">Amount:</label>
+            <input type="text" id="result" name="result" th:value="${result}" disabled />
+        </div>
+        <div class="item">
+            <label for="to">To Currency:</label>
+            <select id="to" name="to" required>
+                <option value="EUR">EUR</option>
+            </select>
+        </div>
+    </div>
+</form>
+
+</body>
+</html>
